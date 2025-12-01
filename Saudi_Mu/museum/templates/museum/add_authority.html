@@ -1,6 +1,7 @@
 {% extends "main/base.html" %}
 {% load static %}
 
+
 {% block content %}
 
 <link rel="stylesheet" href="{% static 'css/add_authority.css' %}">
@@ -15,20 +16,21 @@
     </div>
     {% endif %}
 
-    <h2 class="authority-title">Add Museum</h2>
-    <p class="authority-sub">For Authority: {{ authority.name }}</p>
+    <h2 class="authority-title">Add Your Authority</h2>
+    <p class="authority-sub">Fill in your authority information</p>
 
     <form method="POST" enctype="multipart/form-data" class="authority-form">
         {% csrf_token %}
 
+        <!-- نوع الهيئة -->
         <div class="authority-group">
-            <label>Museum Name</label>
-            {{ form.name }}
+            <label>Authority Type</label>
+            {{ form.type }}
         </div>
 
         <div class="authority-group">
-            <label>Location</label>
-            {{ form.location }}
+            <label>Authority Name</label>
+            {{ form.name }}
         </div>
 
         <div class="authority-group">
@@ -37,19 +39,18 @@
         </div>
 
         <div class="authority-group">
-            <label>Museum Image</label>
+            <label>Location</label>
+            {{ form.location }}
+        </div>
+
+        <div class="authority-group">
+            <label>Google Map Link</label>
+            {{ form.map_url }}
+        </div>
+
+        <div class="authority-group">
+            <label>Authority Image</label>
             {{ form.image }}
-        </div>
-
-        <!-- NEW Time fields -->
-        <div class="authority-group">
-            <label>Open Time</label>
-            {{ form.open_time }}
-        </div>
-
-        <div class="authority-group">
-            <label>Close Time</label>
-            {{ form.close_time }}
         </div>
 
         <button class="authority-btn">Submit</button>
