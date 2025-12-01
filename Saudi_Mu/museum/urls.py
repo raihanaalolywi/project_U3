@@ -16,4 +16,13 @@ urlpatterns = [
     path('booking/', views.booking, name='booking'),
     path('details/', views.details, name='details'),
     path('search/', views.search, name='search'),
+
+
+    # حسب الهيئة تطلع متاحفها 
+
+  path('api/museums/<int:authority_id>/', views.museums_by_authority, name='museums_by_authority'),
+
+
+
+
 ]

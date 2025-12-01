@@ -108,3 +108,51 @@ body {
         font-size: 22px;
     }
 }
+
+
+
+
+/* Profile Link header*/
+.profile-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.profile-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Avatar - الأهم! */
+.nav-avatar {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #f2efe6;
+    display: block;
+}
+
+/* Username */
+.nav-username {
+    font-weight: 500;
+    font-size: 16px;
+    color: #f4c27f;
+    white-space: nowrap;
+}
+
+/* Icon Button */
+.icon-btn {
+    padding: 5px;
+    color: #f4c27f;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+}
+

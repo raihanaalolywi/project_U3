@@ -10,6 +10,7 @@ urlpatterns = [
     path('account/', include('account.urls')),
     path('contact/', include('contact.urls')),
     path('museum/', include('museum.urls')),
+
 ]
 
 if settings.DEBUG:

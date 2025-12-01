@@ -12,7 +12,7 @@
     display: flex;
     align-items: flex-start; /* من الأعلى */
     justify-content: center;
-    padding: 60px 20px 20px 20px; /* مسافة من الهيدر */
+    padding: 20px 20px 20px 20px; /* مسافة من الهيدر */
 }
 
 /* Sign In Box */
@@ -140,34 +140,8 @@ h2 {
     padding: 0 15px;
 }
 
-/* Google Button */
-.google-btn {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #e5e7eb;
-    border-radius: 10px;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-size: 15px;
-    font-weight: 500;
-    font-family: "Tajawal", sans-serif;
-}
 
-.google-btn:hover {
-    border-color: #4A0E2E;
-    background: #f9fafb;
-    transform: translateY(-2px);
-}
 
-.google-btn img {
-    width: 20px;
-    height: 20px;
-}
 
 /* Signup Link */
 .signup-link {

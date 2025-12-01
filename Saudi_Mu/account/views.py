@@ -5,10 +5,12 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.db import IntegrityError, transaction
 from .models import Profile
+from django.db import transaction
 
 # -----------------------------
 # Sign Up
 # -----------------------------
+
 def sign_up(request: HttpRequest):
     if request.method == "POST":
         try:
@@ -22,7 +24,6 @@ def sign_up(request: HttpRequest):
                     last_name=request.POST["last_name"]
                 )
                 new_user.save()
-
                 # إنشاء البروفايل
                 avatar = request.FILES.get("avatar")
                 if not avatar:
@@ -32,7 +33,6 @@ def sign_up(request: HttpRequest):
                     user=new_user,
                     avatar=avatar
                 )
-
             # تسجيل الدخول مباشرة بعد التسجيل
             login(request, new_user)
             messages.success(request, "Registered and logged in successfully!")
@@ -45,7 +45,6 @@ def sign_up(request: HttpRequest):
             print(e)
 
     return render(request, "account/signup.html")
-
 
 # -----------------------------
 # Sign In
@@ -66,41 +65,55 @@ def sign_in(request: HttpRequest):
 
     return render(request, "account/signin.html")
 
-
 # -----------------------------
 # Log Out
 # -----------------------------
+
 def log_out(request: HttpRequest):
     logout(request)
     messages.success(request, "Logged out successfully")
     return redirect(request.GET.get("next", "/"))
 
-
 # -----------------------------
 # User Profile View
 # -----------------------------
+
 def user_profile_view(request: HttpRequest, user_name):
     try:
         user = User.objects.get(username=user_name)
-        # إنشاء بروفايل إذا ما موجود
-        if not hasattr(user, 'profile'):
-            Profile.objects.create(user=user)
+        # تأكد من وجود البروفايل
+        profile, created = Profile.objects.get_or_create(user=user)
+
+        # حساب الإحصائيات (بداية بصفر)
+        visited_museums_count = getattr(profile, "visited_museums_count", 0)
+        bookmarks_count = getattr(profile, "bookmarks_count", 0)
+        user_comments = getattr(profile, "user_comments", [])
+
     except User.DoesNotExist:
         return render(request, '404.html')
 
-    return render(request, 'account/profile.html', {"user": user})
-
+    context = {
+        "user": user,
+        "profile": profile,
+        "visited_museums_count": visited_museums_count,
+        "bookmarks_count": bookmarks_count,
+        "user_comments": user_comments,
+    }
+    return render(request, 'account/profile.html', context)
 
 # -----------------------------
 # Update Profile
 # -----------------------------
-def update_user_profile(request: HttpRequest):
+
+def update_user_profile(request):
     if not request.user.is_authenticated:
         messages.warning(request, "Only registered users can update their profile", "alert-warning")
         return redirect("account:sign_in")
 
-    user: User = request.user
-    profile: Profile = user.profile
+    user = request.user
+
+    # تأكد أن البروفايل موجود
+    profile, created = Profile.objects.get_or_create(user=user)
 
     if request.method == "POST":
         try:
@@ -113,8 +126,7 @@ def update_user_profile(request: HttpRequest):
 
                 # تحديث بيانات البروفايل
                 profile.about = request.POST.get("about", profile.about)
-                profile.twitch_link = request.POST.get("twitch_link", profile.twitch_link)
-                if "avatar" in request.FILES:
+                if request.FILES.get("avatar"):
                     profile.avatar = request.FILES["avatar"]
                 profile.save()
 
@@ -123,9 +135,8 @@ def update_user_profile(request: HttpRequest):
 
         except Exception as e:
             messages.error(request, "Couldn't update profile. Try again.", "alert-danger")
-            print(e)
+            print("Error updating profile:", e)
 
-    # GET request => عرض الصفحة مع البيانات الحالية
     context = {
         "user": user,
         "profile": profile

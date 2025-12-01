@@ -3,29 +3,29 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 /* Body Container */
 .signup-body {
-    background: #F8F4EF;
+    background: #F8F4EF !;
     font-family: "Tajawal", sans-serif;
     min-height: 100vh;
     display: flex;
     align-items: flex-start; /* من الأعلى */
     justify-content: center;
-    padding: 60px 20px 20px 20px; /* مسافة من الهيدر */
+padding: 20px;
 }
 
 /* Sign In Box */
 .signup-box {
-    background: #ffffff;
+    background: #fff;
     width: 100%;
-    max-width: 850px;
-    border-radius: 25px;
+    max-width: 1100px;
+    border-radius: 20px;
     display: flex;
     overflow: hidden;
-    box-shadow: 0 15px 50px rgba(0,0,0,0.25);
-    margin: 0 auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    margin: auto; /* لضمان التمركز */
 }
+
 
 /* Side Image */
 .side-image {
@@ -49,9 +49,10 @@
 .form-container {
     width: 50%;
     padding: 45px 40px;
-    overflow-y: auto;
-    max-height: 90vh;
+    overflow-y: visible; /* ما فيه سكرول داخل البوكس */
+    max-height: none;    /* يطول براحتة */
 }
+
 
 /* Headings */
 h2 {

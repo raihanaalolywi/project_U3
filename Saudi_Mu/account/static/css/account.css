@@ -1,9 +1,6 @@
 
 
 
-
-
-
 /*update*/
 /* Use the same style as your previous SignUp box */
 .signup-box {
@@ -35,9 +32,9 @@
 
 .form-container {
     width: 55%;
-    padding: 40px 45px;
-    overflow-y: auto;
-    max-height: 90vh;
+    padding: 20px 60px; /* ↓ قللت المساحة */
+    overflow-y: visible;
+    max-height: none;
 }
 
 .input-group {

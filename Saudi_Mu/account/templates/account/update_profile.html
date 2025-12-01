@@ -40,11 +40,6 @@
             </div>
 
             <div class="input-group">
-                <label>Twitch Link (Optional)</label>
-                <input type="url" name="twitch_link" value="{{ request.user.profile.twitch_link }}">
-            </div>
-
-            <div class="input-group">
                 <label>Profile Picture</label>
                 {% if request.user.profile.avatar %}
                     <img src="{{ request.user.profile.avatar.url }}" class="rounded-3 mb-2" style="width:120px; height:120px; object-fit:cover; border:3px solid #4A0E2E;">

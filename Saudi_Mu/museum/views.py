@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from .models import Authority, AuthorityType
 from .forms import AuthorityForm, MuseumForm
 from django.contrib import messages
+from django.http import JsonResponse
+from .models import Museum
 
 
 def add_authority(request):
@@ -71,7 +73,13 @@ def all_del_museum(request):
 
 
 def booking(request):
-    return render(request, 'museum/booking.html')
+    authorities = Authority.objects.all()
+    museums = Museum.objects.all()
+    context = {
+        'authorities': authorities,
+        'museums': museums,
+    }
+    return render(request, 'museum/booking.html', context)
 
 
 def details(request):
@@ -80,3 +88,14 @@ def details(request):
 
 def search(request):
     return render(request, 'museum/search.html')
+
+
+
+def museums_by_authority(request, authority_id):
+    museums = Museum.objects.filter(authority_id=authority_id)
+    data = [{"id": m.id, "name": m.name} for m in museums]
+    return JsonResponse(data, safe=False)
+
+
+
+
