@@ -17,8 +17,6 @@ class AuthorityForm(forms.ModelForm):
         }
 
 
-# ================= NEW ===================
-
 class MuseumForm(forms.ModelForm):
     class Meta:
         model = Museum
@@ -28,7 +26,8 @@ class MuseumForm(forms.ModelForm):
             'location',
             'description',
             'open_time',
-            'close_time'
+            'close_time',
+            'map_url'
         ]
 
         widgets = {
@@ -42,5 +41,8 @@ class MuseumForm(forms.ModelForm):
             ),
             'close_time': forms.TimeInput(
                 attrs={'type': 'time', 'class': 'authority-input'}
+            ),
+            'map_url': forms.TextInput(
+                attrs={'class': 'authority-input'}
             ),
         }

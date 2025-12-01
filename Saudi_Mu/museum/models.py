@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-# مودل أنواع الهيئات (الأدمن هو اللي يضيفها)
+# مودل أنواع الهيئات (الأدمن هو الذي يضيفها)
 class AuthorityType(models.Model):
     name = models.CharField(max_length=150)
 
@@ -10,7 +10,7 @@ class AuthorityType(models.Model):
         return self.name
 
 
-# مودل لاضافة الهيئات 
+# مودل لإضافة الهيئات
 class Authority(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -32,7 +32,7 @@ class Authority(models.Model):
         return self.name
 
 
-
+# مودل المتحف التابع لهيئة
 class Museum(models.Model):
     authority = models.ForeignKey(Authority, on_delete=models.CASCADE)
 
@@ -41,9 +41,10 @@ class Museum(models.Model):
     location = models.CharField(max_length=150)
     description = models.TextField()
 
-    # ================= NEW FIELDS =================
+    # حقول جديدة
     open_time = models.TimeField(null=True, blank=True)
     close_time = models.TimeField(null=True, blank=True)
+    map_url = models.URLField(null=True, blank=True)
 
     def __str__(self):
         return self.name

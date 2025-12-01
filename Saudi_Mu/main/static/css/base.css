@@ -4,107 +4,170 @@
     --beige: #EEE2CC;
 }
 
-/* BODY */
 body {
     background: var(--beige);
     margin: 0;
     font-family: "Poppins", sans-serif;
 }
 
-/* NAVBAR */
+/* ================= NAVBAR ================= */
+
 .base-navbar {
-    background: #3C0D29;
-    padding: 15px 40px;
+    background: var(--bg);
+    padding: 10px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 4px solid var(--gold);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
     position: sticky;
     top: 0;
     z-index: 999;
     direction: ltr;
 }
 
-/* ------------- توزيع احترافي ---------------- */
-
-/* الآن نبدل بين اليسار واليمين */
-.base-left {
-    order: 1; /* Saudi Museum */
-    margin-left: 20px;
+.base-logo {
+    color: var(--gold);
+    font-size: 26px;
+    font-weight: bold;
 }
 
 .base-center {
-    order: 2;
     display: flex;
-    justify-content: center;
-    flex: 1;
-    gap: 25px;
+    gap: 20px;
 }
 
-.base-right {
-    order: 3; /* Icons */
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-right: 20px;
-}
-
-/* ----------- LOGO ----------- */
-.base-logo {
-    color: var(--gold);
-    font-size: 28px;
-    font-weight: 700;
-}
-
-/* ---------- LINKS ---------- */
 .base-center a {
-    text-decoration: none;
-    font-size: 17px;
     color: var(--gold);
-    font-weight: 500;
-    transition: 0.3s;
+    text-decoration: none;
+    font-size: 16px;
+    transition: .3s;
 }
 
 .base-center a:hover {
-    color: #ffffff;
-    text-shadow: 0 0 5px rgba(255,255,255,0.7);
+    color: white;
 }
 
-/* ----------- ICONS ---------- */
+.base-right {
+    display: flex;
+    gap: 10px;
+}
+
 .icon-btn {
-    padding: 10px;
+    padding: 8px;
     border: 2px solid var(--gold);
     border-radius: 12px;
     background: var(--bg);
-    cursor: pointer;
-    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s;
 }
 
 .icon-btn svg {
     stroke: var(--gold);
-    stroke-width: 2;
-    fill: none;
 }
 
 .icon-btn:hover {
     background: var(--gold);
-    transform: scale(1.12);
 }
 
 .icon-btn:hover svg {
     stroke: var(--bg);
 }
 
-/* -------- Responsive -------- */
-@media(max-width: 800px){
+/* ================= FOOTER ================= */
+
+.footer {
+    background: var(--bg);
+    color: var(--gold);
+    padding: 40px 0;
+    border-top: 4px solid var(--gold);
+}
+
+.footer-container {
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.footer-section {
+    width: 33%;
+    text-align: left;
+}
+
+/* 👇 التعديل الأهم */
+.footer-section.social {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.footer-section h3,
+.footer-section h4 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.footer-section a {
+    color: var(--gold);
+    text-decoration: none;
+    display: block;
+    margin: 5px 0;
+    transition: .3s;
+}
+
+.footer-section a:hover {
+    color: white;
+}
+
+.footer-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+    justify-content: flex-start;
+}
+
+.footer-icons svg {
+    stroke: var(--gold);
+    transition: .3s;
+}
+
+.footer-icons svg:hover {
+    stroke: white;
+}
+
+.footer-end {
+    text-align: center;
+    color: white;
+    margin-top: 30px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width: 900px){
     .base-center {
         display: none;
     }
-}
 
-@media(max-width: 500px){
-    .base-logo {
-        font-size: 22px;
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-section {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* هنا للوسط بالجوال */
+    .footer-section.social {
+        align-items: center;
+    }
+
+    .footer-icons {
+        justify-content: center;
     }
 }

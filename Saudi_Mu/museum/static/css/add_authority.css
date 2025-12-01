@@ -31,6 +31,7 @@
     display: flex;
     flex-direction: column;
     gap: 22px;
+    align-items: stretch; /* NEW */
 }
 
 /* FORM GROUP */
@@ -38,6 +39,7 @@
     display: flex;
     flex-direction: column;
     gap: 6px;
+    text-align: left; /* NEW */
 }
 
 /* LABEL */
@@ -45,11 +47,13 @@
     font-weight: 600;
     font-size: 16px;
     color: var(--bg);
+    text-align: left; /* NEW */
 }
 
 /* INPUT & TEXTAREA */
 .authority-group input,
-.authority-group textarea {
+.authority-group textarea,
+.authority-group select {
     width: 100%;
     border: 2px solid var(--gold);
     background: #fff;
@@ -58,12 +62,16 @@
     font-size: 16px;
     color: #333;
     transition: 0.2s;
+    margin-left: 0; /* NEW */
+    margin-right: 0; /* NEW */
+    box-sizing: border-box; /* NEW */
 }
 
 /* TEXTAREA HEIGHT */
 .authority-group textarea {
     height: 130px;
     resize: none;
+    text-align: left; /* NEW */
 }
 
 /* INPUT FOCUS */
@@ -104,12 +112,10 @@
     background: white;
 }
 
-
 .authority-input[type="time"]::-webkit-calendar-picker-indicator {
     filter: invert(30%);
     cursor: pointer;
 }
-
 
 /* RESPONSIVE */
 @media (max-width: 700px) {

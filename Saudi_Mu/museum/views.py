@@ -43,6 +43,7 @@ def all_authority(request):
         "selected": authority_type,
     })
 
+
 def add_museum(request, authority_id):
     authority = Authority.objects.get(id=authority_id)
 
