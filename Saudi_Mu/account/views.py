@@ -6,16 +6,18 @@ from django.contrib import messages
 from django.db import IntegrityError, transaction
 from .models import Profile
 from django.db import transaction
-
+from django.core.mail import send_mail
+from django.conf import settings
 # -----------------------------
 # Sign Up
 # -----------------------------
+
 
 def sign_up(request: HttpRequest):
     if request.method == "POST":
         try:
             with transaction.atomic():
-                # إنشاء المستخدم
+                # Create the user
                 new_user = User.objects.create_user(
                     username=request.POST["username"],
                     password=request.POST["password"],
@@ -24,7 +26,8 @@ def sign_up(request: HttpRequest):
                     last_name=request.POST["last_name"]
                 )
                 new_user.save()
-                # إنشاء البروفايل
+
+                # Create the profile
                 avatar = request.FILES.get("avatar")
                 if not avatar:
                     avatar = Profile.avatar.field.get_default()
@@ -33,18 +36,29 @@ def sign_up(request: HttpRequest):
                     user=new_user,
                     avatar=avatar
                 )
-            # تسجيل الدخول مباشرة بعد التسجيل
+
+            # Send welcome email
+            send_mail(
+                subject="Successfully registered on our site",
+                message=f"Hello {new_user.first_name},\n\nYou have successfully registered on our site . Welcome!",
+                from_email=settings.DEFAULT_FROM_EMAIL,  
+                recipient_list=[new_user.email],
+                fail_silently=False,
+            )
+
+            # Automatically log in the user
             login(request, new_user)
-            messages.success(request, "Registered and logged in successfully!")
+            messages.success(request, "Registered and logged in successfully! Check your email.")
             return redirect("account:user_profile_view", user_name=new_user.username)
 
         except IntegrityError:
-            messages.error(request, "Username already exists, please choose another.")
+            messages.error(request, "Username already exists. Please choose another.")
         except Exception as e:
-            messages.error(request, "Couldn't register user. Try again.")
+            messages.error(request, "Could not register the user. Please try again.")
             print(e)
 
     return render(request, "account/signup.html")
+
 
 # -----------------------------
 # Sign In
