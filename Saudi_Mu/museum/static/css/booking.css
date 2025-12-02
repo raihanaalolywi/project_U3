@@ -1,74 +1,104 @@
-.booking-container {
-    max-width: 650px;
-    margin: 50px auto;
-    background-color: #fdfdf7;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    font-family: "Tajawal", sans-serif;
+.booking-box {
+    max-width: 800px;
+    margin: 4rem auto;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
 }
 
-.booking-container h2 {
-    text-align: center;
-    margin-bottom: 10px;
-    color: #3a1818;
+/* Video wrapper with overlay */
+.booking-video-wrapper {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 }
 
-.booking-container p {
-    text-align: center;
-    margin-bottom: 25px;
-    color: #5a5a5a;
-}
-
-.booking-form .form-group {
-    margin-bottom: 20px;
-}
-
-.booking-form label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 500;
-    color: #3a1818;
-}
-
-.booking-form input[type="text"],
-.booking-form input[type="email"],
-.booking-form select,
-.booking-form input[type="date"],
-.booking-form input[type="time"] {
+.booking-video-wrapper video {
     width: 100%;
-    padding: 10px 12px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    font-size: 16px;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.5); /* darken video for text visibility */
 }
 
-.booking-form input[readonly] {
-    background-color: #eee;
-    cursor: not-allowed;
-}
-
-.booking-form .btn-book {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    background-color: #3a1818;
+.booking-header {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     color: white;
-    font-size: 18px;
-    font-weight: 500;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background 0.3s;
+    text-align: center;
+    z-index: 2;
 }
 
-.booking-form .btn-book:hover {
-    background-color: #4a1a16;
+.booking-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.booking-header p {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.booking-body {
+    padding: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.form-control, .form-select {
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ccc;
+}
+
+.form-control:read-only {
+    background: #e9ecef;
+    cursor: not-allowed;
+    border: 1px solid #ccc;
+    transition: all 0.3s ease;
+}
+
+.btn-submit {
+    background: rgb(67, 29, 29);
+    color: white;
+    border: none;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    border-radius: 10px;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102,126,234,0.4);
 }
 
 @media (max-width: 768px) {
-    .booking-container {
-        margin: 30px 15px;
-        padding: 20px;
+    .booking-video-wrapper {
+        height: 180px;
+    }
+
+    .booking-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .booking-header p {
+        font-size: 0.9rem;
     }
 }

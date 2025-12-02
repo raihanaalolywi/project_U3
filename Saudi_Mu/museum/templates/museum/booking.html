@@ -5,114 +5,10 @@
 
 {% block content %}
 
+<!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-<style>
-.booking-box {
-    max-width: 800px;
-    margin: 4rem auto;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(8px);
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-}
-
-/* Video wrapper with overlay */
-.booking-video-wrapper {
-    position: relative;
-    height: 250px;
-    overflow: hidden;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-}
-
-.booking-video-wrapper video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.5); /* darken video for text visibility */
-}
-
-.booking-header {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    text-align: center;
-    z-index: 2;
-}
-
-.booking-header h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-}
-
-.booking-header p {
-    font-size: 1rem;
-    margin: 0;
-}
-
-.booking-body {
-    padding: 2rem;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-label {
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    display: block;
-}
-
-.form-control, .form-select {
-    border-radius: 10px;
-    padding: 0.8rem 1rem;
-    border: 1px solid #ccc;
-}
-
-.form-control:read-only {
-    background: #e9ecef;
-    cursor: not-allowed;
-    border: 1px solid #ccc;
-    transition: all 0.3s ease;
-}
-
-.btn-submit {
-    background: rgb(67, 29, 29);
-    color: white;
-    border: none;
-    padding: 0.8rem 1rem;
-    font-size: 1rem;
-    border-radius: 10px;
-    width: 100%;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.btn-submit:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102,126,234,0.4);
-}
-
-@media (max-width: 768px) {
-    .booking-video-wrapper {
-        height: 180px;
-    }
-
-    .booking-header h2 {
-        font-size: 1.5rem;
-    }
-
-    .booking-header p {
-        font-size: 0.9rem;
-    }
-}
-</style>
+<!-- Custom Booking CSS -->
+<link rel="stylesheet" href="{% static 'css/booking.css' %}">
 
 <div class="booking-box">
     <!-- Video as background -->
@@ -136,13 +32,13 @@
 
             <div class="form-group">
                 <label for="name" class="form-label">Full Name</label>
-                <input type="text" class="form-control" id="name" name="name" 
+                <input type="text" class="form-control" id="name" name="name"
                        value="{{ request.user.first_name }} {{ request.user.last_name }}" readonly>
             </div>
 
             <div class="form-group">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" 
+                <input type="email" class="form-control" id="email" name="email"
                        value="{{ request.user.email }}" readonly>
             </div>
 
