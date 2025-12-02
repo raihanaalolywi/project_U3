@@ -51,6 +51,10 @@
             </iframe>
         </div>
 
+
+        {% if user.is_authenticated %}
+
+        <!-- ========== FORM IF LOGGED IN ============ -->
         <form method="POST" class="contact-form">
             {% csrf_token %}
 
@@ -74,6 +78,18 @@
 
             <button type="submit" class="btn-send">Send Message</button>
         </form>
+
+        {% else %}
+
+        <!-- ===== IF NOT LOGGED IN === -->
+        <div class="login-required">
+            <p>You must be logged in to send a message.</p>
+            <a href="{% url 'account:sign_in' %}" class="btn-send">
+                Login
+            </a>
+        </div>
+
+        {% endif %}
 
     </div>
 
